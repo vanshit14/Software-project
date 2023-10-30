@@ -19,16 +19,18 @@ function App() {
 
   return (
     <div>
+     
+      <div>
+      <BrowserRouter>
       <div className='nav'>
       <Navbar></Navbar>
     </div>
-      <div>
-      <BrowserRouter>
       <Routes>
      <Route path="/" Component={Login}/>
      <Route path="/RegistrationForm" Component={RegistrationForm}/>
      <Route path="/Layout" element={<Layout/>}></Route>
     <Route path="/Provideride" Component={Provideride}></Route>
+    <Route path = "/Demo" Component={Demo}></Route>
       </Routes>
       </BrowserRouter>
 </div>

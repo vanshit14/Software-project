@@ -39,7 +39,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setError(`Error fetching data: ${error.message}`);
+        setError("provide valid details");
       })
       .finally(() => {
         setIsLoading(false); // Set loading state to false after request completion
@@ -61,11 +61,14 @@ const Login = () => {
         {isLoading ? 'Logging in...' : 'Login'}
       </button>
 
-      <p>
+      <p className='account'>
         Don't have an account?{' '}
+        <div className='regis-button'>
         <Link to="/RegistrationForm">
           <button>Register</button>
         </Link>
+        </div>
+        
       </p>
     </div>
   );

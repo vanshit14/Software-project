@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useActionData } from "react-router-dom";
+import { useActionData, useNavigate } from "react-router-dom";
 import './Provideride.css';
 const Provideride = () =>{
 
@@ -9,16 +9,25 @@ const Provideride = () =>{
     const [iscarname,setcarname] = useState('');
     const [iscartype,setcartype] = useState('');
     const [ischarge,setcharge] = useState('');
+    const [isfrom,setfrom] = useState('');
+    const [isto,setto] = useState('');
+const navigate = useNavigate();
+
+    const handleride = () => {
+navigate('/Demo');
+
+
+    }
     return(
 
         <div className="licence-container">
-            <div className="licence">
+            <div className="detail-licence">
             <label>Driving licence: </label>
             <input type="text" value={islicence} onChange={(e)=>{setlicence(e.target.value)}}
             required/>
             </div>
 
-            <div className="licence">
+            <div className="detail">
             <label>Available seat: </label>
             <select value={isseat} onChange={(e)=>{setseat(e.target.value)}} required>
                 <option value="1">1</option>
@@ -29,18 +38,18 @@ const Provideride = () =>{
             </select>
             </div>
 
-            <div className="licence">
+            <div className="detail">
                 <label>Car No. :</label>
                 <input type="text" value={iscarno} onChange={(e)=>{setcarno(e.target.value)}} required />
             </div>
             
 
-            <div className="licence">
+            <div className="detail">
                 <label>Car Name:</label>
                 <input type="text" value={iscarname} onChange={(e)=>{setcarname(e.target.value)}} required />
             </div>
 
-            <div className="licence"> 
+            <div className="detail"> 
             <label>car type:</label>
             <select value={iscartype} onChange={(e)=>{setcartype(e.target.value)}} required>
                 <option value="">select car type</option>
@@ -50,9 +59,25 @@ const Provideride = () =>{
             </select>
             </div>
 
-            <div className="licence">
+            <div className="detail">
                 <label>Charge per km:</label>
                 <input type="text" value={ischarge} onChange={(e)=>{setcharge(e.target.value)}} required/>
+            </div>
+
+            <div className="detail">
+                <label >From:</label>
+                <input type="text" value={isfrom} onChange={(e)=>{setfrom(e.target.value)}} required />
+
+            </div>
+
+            <div className="detail">
+                <label >To:</label>
+                <input type="text" value={isto} onChange={(e)=>{setto(e.target.value)}} required />
+
+            </div>
+
+            <div className="submit">
+                <button onClick={handleride}>Submit</button>
             </div>
 
             

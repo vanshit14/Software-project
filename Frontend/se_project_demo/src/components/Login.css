@@ -9,7 +9,12 @@
   background-color: white;
   
 }
-
+.account{
+  margin-top: 1rem;
+}
+.regis-button{
+  margin-top: 0.5rem;
+}
 
 h2 {
   text-align: center;
