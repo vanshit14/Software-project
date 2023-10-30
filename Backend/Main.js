@@ -1,16 +1,16 @@
 const {Client} = require('pg');
 const express = require('express');
 const app = express();
-require('dotenv').config();
+require('dotenv').config({path : '../.env'});
 const cors = require('cors');
 
-app.use(cors());   
+app.use(cors());  
 
 app.listen(3300,()=>{
     console.log("server running on port 3300");
 })
-
 const client = new Client ({
+   
     host: process.env.Host,
     user: process.env.User,
     port: process.env.Port,
