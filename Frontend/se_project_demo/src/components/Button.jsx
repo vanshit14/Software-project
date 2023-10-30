@@ -5,7 +5,7 @@ import { Navigate, useNavigate ,BrowserRouter,Route,Routes} from 'react-router-d
 const Button = () => {
     const navigate = useNavigate();
 const navigation =()=>{
-    navigate('/Demo');
+    navigate('/Provideride');
 }
 
   return (

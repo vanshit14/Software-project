@@ -1,0 +1,16 @@
+.licence{
+    width: 40%;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-right: auto;
+
+}
+
+select{
+    width: 100%;
+}
+
+.licence-container{
+    margin-top: 15px;
+    border: solid black;
+}

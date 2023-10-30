@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Demo from './components/Demo';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Provideride from './components/Provideride';
 
 function App() {
   // useEffect(() => {
@@ -20,16 +21,17 @@ function App() {
     <div>
       <div className='nav'>
       <Navbar></Navbar>
-      </div>
+    </div>
+      <div>
       <BrowserRouter>
       <Routes>
      <Route path="/" Component={Login}/>
      <Route path="/RegistrationForm" Component={RegistrationForm}/>
      <Route path="/Layout" element={<Layout/>}></Route>
-    <Route path="/Demo" Component={Demo}></Route>
+    <Route path="/Provideride" Component={Provideride}></Route>
       </Routes>
       </BrowserRouter>
-
+</div>
     </div>
   );
 }
