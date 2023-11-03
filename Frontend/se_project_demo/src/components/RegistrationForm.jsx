@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
 import {Routes, Route, useNavigate, Navigate, useNavigation} from 'react-router-dom';
+import { UserProvider,useUser } from './UserContext';
 import './RegistrationForm.css';
 
 const RegistrationForm = () => {
@@ -12,6 +13,7 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  
 
   const [errors, setErrors] = useState({
     last: '',
@@ -29,6 +31,10 @@ const RegistrationForm = () => {
   // const navigation = () =>{
   //   navigate('/Layout');
   // }
+
+  const handleLogin = () =>{
+    navigate('/');
+  }
 
   const handleRegistration = () => {
     // Validate individual fields
@@ -50,6 +56,13 @@ const RegistrationForm = () => {
     if (Object.values(newErrors).some((error) => error !== '')) {
       return;
     }
+    const error = {
+      username: 'atleast 5 character', 
+    }
+    if(username.length<5){
+      setErrors(error);
+      return;
+    }
     // Send data to the server for processing
     const userData = {
       last,
@@ -69,8 +82,9 @@ const RegistrationForm = () => {
     };
     fetch("http://localhost:3300/newuser", requestOptions)
   .then((res) => {
+    console.log(userData.username);
     console.log(res);
-    navigate('/Layout');
+    navigate('/');
     // Handle the response here if needed
   })
   .catch((error) => {
@@ -141,6 +155,7 @@ const RegistrationForm = () => {
       {errors.email && <div className="error">{errors.email}</div>}
 
       <button className="register" onClick={()=>{handleRegistration();}}>Register</button>
+      <button className="register" onClick={()=>{handleLogin();}}>Login</button>
     </div>
   );
 };

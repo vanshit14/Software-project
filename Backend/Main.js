@@ -1,74 +1,56 @@
-const {Client} = require('pg');
+const { mongoose } = require('mongoose');
 const express = require('express');
 const app = express();
 require('dotenv').config({path : '../.env'});
 const cors = require('cors');
-
+  
 app.use(cors());  
 
 app.listen(3300,()=>{
     console.log("server running on port 3300");
 })
-const client = new Client ({
-   
-    host: process.env.Host,
-    user: process.env.User,
-    port: process.env.Port,
-    password: process.env.Password,
-    database: process.env.Database,
-})
+
+const uri = process.env.uri;
+
+mongoose.connect(uri).then(()=>{
+    console.log("connection")
+}).catch((err)=>{console.log(err.message)});
+
 const bodyparser = require('body-parser');
 app.use(bodyparser.json());
-client.connect();
 
+const testSchema = new mongoose.Schema({
+        first : String,
+        last : String,
+        username : String,
+        password : String,
+        dob : Date,
+        phone : String,
+        email : String,
+        gender : String,
+},{ versionKey: false });
+
+const Test = mongoose.model('users', testSchema);
 
 app.get('/userdetail/:username', (req, ress) => {
-    // Use req.params.username to get the parameter from the URL
-    const user = req.params.username;
-console.log(user);
-    client.query(`SELECT * FROM userdetail WHERE username = '${user}'`, (err, result) => {
-        if (!err) {
-            console.log(result.rows);
-            ress.send(result.rows);
-        } else {
-            console.log(err.message);
-            ress.send(err.message);
-        }
-        //client.end();
-    });
+
+  const user = req.params.username;
+Test.find({username: user})
+  .then(res => {
+    ress.send(res);
+  })
+  .catch(error => {
+    ress.send(error.message);
+  });
 });
 
+app.post('/newuser',async (req,ress)=>{
+const name = req.body.username;
+await Test.create(req.body).then((res)=>{
+    ress.send(res)
+}).catch((err)=>{
+    ress.send(err.message);
+});
 
+});
 
-app.post('/newuser',(req,ress)=>{
-    const {
-        first,
-        last,
-        username,
-        password,
-        dob,
-        phone,
-        email,
-        gender
-      } = req.body;
-    
-      const query = `
-        INSERT INTO userdetail 
-        (first, last, username, password, dob, phone, email, gender) 
-        VALUES 
-        ('${first}', '${last}', '${username}', '${password}', '${dob}', ${phone}, '${email}', '${gender}')
-        RETURNING *
-      `;
-
-client.query(query,(err,res)=>{
-    if(!err){
-        console.log(res.rows);
-        ress.send(res.rows);
-    }
-    else{
-        console.log(err.message);
-        ress.send(err.message);
-    }
-})
-
-})

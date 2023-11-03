@@ -7,6 +7,10 @@ import Navbar from './components/Navbar';
 import Demo from './components/Demo';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Provideride from './components/Provideride';
+import Profile from './components/Profile';
+import { UserProvider,UserContext,context } from './components/UserContext';
+import Mapview from './components/Mapview';
+
 
 function App() {
   // useEffect(() => {
@@ -22,6 +26,9 @@ function App() {
      
       <div>
       <BrowserRouter>
+      <UserProvider>
+      
+           
       <div className='nav'>
       <Navbar></Navbar>
     </div>
@@ -31,7 +38,11 @@ function App() {
      <Route path="/Layout" element={<Layout/>}></Route>
     <Route path="/Provideride" Component={Provideride}></Route>
     <Route path = "/Demo" Component={Demo}></Route>
+    <Route path = "/Profile" Component={Profile}></Route>
+    <Route path ="/Mapview" Component={Mapview}></Route>
       </Routes>
+       
+      </UserProvider>
       </BrowserRouter>
 </div>
     </div>

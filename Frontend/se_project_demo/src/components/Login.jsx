@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {setUserInfo,useUser} from './UserContext';
 import './Login.css';
 
 const Login = () => {
@@ -8,45 +9,49 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const[isdata,setdata]=useState([]);
-
+  const { setUserInfo } = useUser();
+const {userData} = useUser();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setIsLoading(true); // Set loading state to true while processing the request
+  // const setUserData = (data) => {
+  //   console.log('Setting user data:', data);
+  //   setUserInfo(data);
+  // };
 
-    fetch(`http://localhost:3300/userdetail/${usernamein}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((dataarray) => {
-        setdata(dataarray);
-        const data = dataarray.length > 0 ? dataarray[0] : null;
-        if (data && data.password) {
-          if (passwordin === data.password) {
-            //console.log("Password is correct");
-            navigate('/Layout');
-          } else {
-            //console.log("Incorrect password");
-            setError("Incorrect password");
-          }
-        } else {
-          //console.log("No password found in the data");
-          setError("No username found in the data");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setError("provide valid details");
-      })
-      .finally(() => {
-        setIsLoading(false); // Set loading state to false after request completion
-      });
+  // const [infoUser, setInfoUser] = useState();
+
+  
+
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+  
+    try {
+      const response = await fetch(`http://localhost:3300/userdetail/${usernamein}`);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const dataarray = await response.json();
+      const data = dataarray.length > 0 ? dataarray[0] : null;
+  
+      if (data && data.password === passwordin) {
+        await setUserInfo(data);
+        navigate('/Layout');
+      } else {
+        setError('Incorrect username or password');
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError("Provide valid details");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
+   
     <div className='final'>
       <h2>Login</h2>
       <label>Username: </label>
@@ -71,6 +76,7 @@ const Login = () => {
         
       </p>
     </div>
+    
   );
 };
 
