@@ -1,14 +1,12 @@
 import Button from "./Button";
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
 import './Layout.css'
-import {setUserInfo,useUser} from './UserContext';
+import {useUser} from './UserContext';
 const Layout = () => {
-  const { setUserInfo } = useUser();
-    const {userData} = useUser();
+    const {userInfo} = useUser();
   useEffect(()=>{
-    
-    console.log(userData);
-  },[userData])
+    console.log("context data:",userInfo);
+  },[userInfo])
   return (
     <>
     <div className="layout">

@@ -17,12 +17,14 @@ mongoose.connect(uri).then(()=>{
 }).catch((err)=>{console.log(err.message)});
 
 const bodyparser = require('body-parser');
+const { Int32, Timestamp } = require('mongodb');
 app.use(bodyparser.json());
-
+//////////////////////// User ////////////////////////
+/////////////////// Register /////////////////////////
 const testSchema = new mongoose.Schema({
         first : String,
         last : String,
-        username : String,
+        username : {type:String , unique: true },
         password : String,
         dob : Date,
         phone : String,
@@ -30,27 +32,73 @@ const testSchema = new mongoose.Schema({
         gender : String,
 },{ versionKey: false });
 
-const Test = mongoose.model('users', testSchema);
+const userdetail = mongoose.model('users', testSchema);
 
 app.get('/userdetail/:username', (req, ress) => {
 
   const user = req.params.username;
-Test.find({username: user})
+userdetail.find({username: user})
   .then(res => {
     ress.send(res);
   })
   .catch(error => {
-    ress.send(error.message);
+    ress.send(error);
   });
 });
 
+////////////////////// Login ///////////////////
+
 app.post('/newuser',async (req,ress)=>{
-const name = req.body.username;
-await Test.create(req.body).then((res)=>{
+await userdetail.create(req.body).then((res)=>{
     ress.send(res)
 }).catch((err)=>{
-    ress.send(err.message);
+
+   ress.status(500).json({ error: 'Internal Server Error' });
 });
 
 });
 
+
+///////////////// ProvideRide ////////////////////
+
+const RideDetailschema = new mongoose.Schema({
+  license: String,
+  seat: Number,
+  carno : String,
+  carname: String,
+  cartype : String,
+  charge: Number,
+  from: String,
+  to: String,  
+  driver_username: String,
+  date: { type: Date, default : Date.now},
+  occupied : {type: Number, default: 0},
+  passenger: { type: Array, default : []},
+
+},{ versionKey: false });
+
+const RideDetails = mongoose.model('ridedetail', RideDetailschema);
+
+app.post('/ridedetails',async (req,ress)=>{
+  await RideDetails.create(req.body).then((res)=>{
+      ress.send(res)
+  }).catch((err)=>{
+      ress.send(err.message);
+  });
+  
+  });
+
+  app.get('/passengerride/:ispassengercount/:isfrom/:isto',(req,ress)=>{
+    const query = {
+      seat: { $gt: req.params.ispassengercount},
+      from: req.params.isfrom,
+      to: req.params.isto,
+    };
+    RideDetails.find(query).then((res)=>{
+      console.log(res);
+      const responseArray = Array.isArray(res) ? res : [res];
+      ress.send(responseArray);
+    }).catch((err)=>{
+      console.log("error",err.message);
+    })
+  })
