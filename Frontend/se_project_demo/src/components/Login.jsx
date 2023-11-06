@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {setUserInfo,useUser} from './UserContext';
+import {useUser} from './UserContext';
 import './Login.css';
 
 const Login = () => {
@@ -8,21 +8,9 @@ const Login = () => {
   const [passwordin, setPasswordin] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const[isdata,setdata]=useState([]);
   const { setUserInfo } = useUser();
-const {userData} = useUser();
   const navigate = useNavigate();
-
-  // const setUserData = (data) => {
-  //   console.log('Setting user data:', data);
-  //   setUserInfo(data);
-  // };
-
-  // const [infoUser, setInfoUser] = useState();
-
   
-
-
   const handleLogin = async () => {
     setIsLoading(true);
   
@@ -50,6 +38,18 @@ const {userData} = useUser();
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleLogin();
+    }
+};
+
+useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+        document.removeEventListener('keydown', handleKeyPress);
+    };
+}, []);
   return (
    
     <div className='final'>
