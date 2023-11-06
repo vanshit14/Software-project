@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './Provideride.css';
 import { useUser } from "./UserContext";
@@ -77,6 +77,18 @@ const Provideride = () => {
         });
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleride();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
     return (
         <div className="licence-container">
             <div className="detail-licence">
@@ -140,8 +152,10 @@ const Provideride = () => {
             </div>
 
             <div className="submit">
-                <button onClick={handleride}>Submit</button>
+                <button onClick={handleride} >Submit</button>
             </div>
+
+            
         </div>
     );
 }

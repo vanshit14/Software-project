@@ -61,6 +61,32 @@ await userdetail.create(req.body).then((res)=>{
 
 ///////////////// ProvideRide ////////////////////
 
+
+
+const generateUniqueCode = async (req, res, next) => {
+  // Function to generate a random 6-digit code
+  const generateRandomCode = () => Math.floor(100000 + Math.random() * 900000);
+
+  // Function to check if the generated code is unique in the collection
+  const isCodeUnique = async (code) => {
+    const existingDoc = await RideDetails.findOne({ code });
+    return !existingDoc;
+  };
+
+  let uniqueCode;
+  do {
+    uniqueCode = generateRandomCode();
+  } while (!(await isCodeUnique(uniqueCode)));
+
+  // Attach the unique code to the request object
+  req.uniqueCode = uniqueCode;
+
+  // Proceed to the next middleware or route handler
+  next();
+};
+
+
+
 const RideDetailschema = new mongoose.Schema({
   license: String,
   seat: Number,
@@ -74,13 +100,13 @@ const RideDetailschema = new mongoose.Schema({
   date: { type: Date, default : Date.now},
   occupied : {type: Number, default: 0},
   passenger: { type: Array, default : []},
-
+  code: { type: Number, unique: true, required: true },
 },{ versionKey: false });
 
 const RideDetails = mongoose.model('ridedetail', RideDetailschema);
 
-app.post('/ridedetails',async (req,ress)=>{
-  await RideDetails.create(req.body).then((res)=>{
+app.post('/ridedetails',generateUniqueCode,async (req,ress)=>{
+  await RideDetails.create({...req.body, code: req.uniqueCode}).then((res)=>{
       ress.send(res)
   }).catch((err)=>{
       ress.send(err.message);

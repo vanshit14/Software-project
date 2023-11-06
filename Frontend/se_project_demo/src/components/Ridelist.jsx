@@ -16,7 +16,7 @@ useEffect(()=>{
     <ul>
       {names.map((name, index) => (
         <li key={index}>
-          {name.driver_username}
+          {name.driver_username},{name.code}
           <button>Get Details</button>
         </li>
       ))}

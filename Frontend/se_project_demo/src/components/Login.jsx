@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {useUser} from './UserContext';
 import './Login.css';
@@ -38,6 +38,18 @@ const Login = () => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleLogin();
+    }
+};
+
+useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+        document.removeEventListener('keydown', handleKeyPress);
+    };
+}, []);
   return (
    
     <div className='final'>

@@ -50,10 +50,20 @@ if (!rideresponse.ok) {
           } finally {
             console.log("finally");
           }
-
-
-        
     }
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleride();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
 
     return (
         <div className="licence-container">
