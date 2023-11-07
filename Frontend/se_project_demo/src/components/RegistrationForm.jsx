@@ -13,6 +13,8 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+
+  
   
 
   const [errors, setErrors] = useState({

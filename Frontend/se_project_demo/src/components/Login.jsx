@@ -38,16 +38,18 @@ const Login = () => {
     }
   };
 
-  const handleKeyPress = (event) => {
+  const handleloginKeyPress = (event) => {
     if (event.key === 'Enter') {
+      console.log("pass",passwordin);
+      console.log(usernamein);
         handleLogin();
     }
 };
 
 useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('keydown', handleloginKeyPress);
     return () => {
-        document.removeEventListener('keydown', handleKeyPress);
+        document.removeEventListener('keydown', handleloginKeyPress);
     };
 }, []);
   return (
@@ -55,10 +57,10 @@ useEffect(() => {
     <div className='final'>
       <h2>Login</h2>
       <label>Username: </label>
-      <input type="text" value={usernamein} onChange={(e) => setUsernamein(e.target.value)} />
+      <input type="text" value={usernamein} onChange={(e) => {setUsernamein(e.target.value)}} />
 
       <label>Password: </label>
-      <input type="password" value={passwordin} onChange={(e) => setPasswordin(e.target.value)} />
+      <input type="password" value={passwordin} onChange={(e) => {setPasswordin(e.target.value)}} />
 
       {error && <div className="error-message" style={{color: 'red'}}>{error}</div>}
 

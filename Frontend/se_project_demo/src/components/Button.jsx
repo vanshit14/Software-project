@@ -13,11 +13,9 @@ navigate('/Bookride');
 }
 
   return (
-    <div className="centered-container">
-      <button  onClick={navigatetoprovide} className="centered-button">Provide a ride</button>
-      <button onClick={navigatetobook} className="centered-button">Book a ride</button>
-     
-    </div>
+  <h1>
+    hello;
+  </h1>
   );
 };
 

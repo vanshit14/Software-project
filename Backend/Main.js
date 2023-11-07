@@ -116,7 +116,7 @@ app.post('/ridedetails',generateUniqueCode,async (req,ress)=>{
 
   app.get('/passengerride/:ispassengercount/:isfrom/:isto',(req,ress)=>{
     const query = {
-      seat: { $gt: req.params.ispassengercount},
+      seat: { $gte: req.params.ispassengercount},
       from: req.params.isfrom,
       to: req.params.isto,
     };
