@@ -1,16 +1,21 @@
-.login-signup{
+/* Base styles */
+
+.login-signup {
   display: flex;
-flex-direction: column;
-align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
-.text-holder{
+
+.text-holder {
   display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: center;
-gap: 1.25rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25rem;
 }
-.login{display: flex;
+
+.login {
+  display: flex;
   width: 100%;
   height: 100%;
   justify-content: flex-end;
@@ -19,34 +24,35 @@ gap: 1.25rem;
   background: #35B5DE;
 }
 
-.login-box{display: flex;
+.login-box {
+  display: flex;
   height: 33.4375rem;
   padding: 4.1875rem 3.8125rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 1.875rem;
-background: #E2EFF8;
+  background: #E2EFF8;
 }
 
-.login-text{
-display: flex;
-width: 23.375rem;
-height: 3.125rem;
-flex-direction: column;
-justify-content: center;
-flex-shrink: 0;
-color: #000;
-text-align: center;
-font-family: Inter;
-font-size: 4.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
+.login-text {
+  display: flex;
+  width: 23.375rem;
+  height: 3.125rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 4.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.account-text{display: flex;
+.account-text {
+  display: flex;
   width: 13.25rem;
   height: 3.0625rem;
   flex-direction: column;
@@ -54,46 +60,36 @@ line-height: normal;
   flex-shrink: 0;
   color: black;
   text-decoration: none;
-
-text-align: center;
-font-family: Inter;
-font-size: 1.25rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.login-username{display: flex;
+
+.login-username,
+.login-password,
+.login-button {
   width: 23.375rem;
-  height: 3.125rem;
-  padding: 0.625rem;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
   border-radius: 0.9375rem;
-background: #CBCAFF;
-
+  background: #CBCAFF;
 }
-.login-password{display: flex;
-  width: 23.375rem;
+
+.login-password {
   height: 2.9375rem;
-  padding: 0.625rem;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 0.9375rem;
-background: #CBCAFF;
+}
 
-}
-.login-button{
+.login-button {
   width: 13.25rem;
-  justify-content: space-between;
-  align-items: center;
   border-radius: 0.9375rem;
-background: #35B5DE;
-text-align: center;
+  background: #35B5DE;
+  text-align: center;
 }
-.curve-box{
+
+.curve-box {
   width: 41.125rem;
   height: 100vh;
   padding: 0.625rem;
@@ -103,5 +99,40 @@ text-align: center;
   gap: 0.625rem;
   flex-shrink: 0;
   border-radius: 12.5rem 0rem 0rem 12.5rem;
-background: #E2EFF8;
+  background: #E2EFF8;
+}
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+  .login {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .login-box {
+    height: auto;
+    padding: 2rem;
+  }
+
+  .login-text {
+    font-size: 3rem;
+  }
+
+  .account-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-username,
+  .login-password,
+  .login-button {
+    width: 100%;
+  }
+
+  .curve-box {
+    width: 100%;
+    border-radius: 0;
+  }
 }

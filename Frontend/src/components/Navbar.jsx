@@ -18,36 +18,26 @@ const Navbar = () => {
   const signup = ()=>{
     navigate('/RegistrationForm');
   }
+  const login = () =>{
+    navigate('/');
+  }
   
   return shouldRenderNavbar ? (
-    <nav className="navbar">
-      <div className='symbol'>
-        symbol
+    <div className="navbar">
 
-      </div>
-      <div className='home'>
-      <Link to="/home">Home</Link>
+      <div className='symbol'></div>
+      <div className='navbar-content'>
+      <Link to="/home" className='home'>Home</Link>
+      <Link to="/about" className='about-us'>About Us</Link>
+      <Link to="/profile" className='profile'>Profile</Link>
       </div>
 
-      <div className='about'>
-      <Link to="/about">About</Link>
+      <div className='navbar-button'>
+        <button className='signin' onClick={login}>Login</button>
+        <button className='signup'onClick={signup}>Sign up</button>
       </div>
-    
-    <div className='profile'>
-    <Link to="/profile">Profile</Link>
-    </div>
-    
-    <div className='signin'>
-    <button className="navbar-button" >sign in</button>
-    </div>
-   
-   <div className='signup'>
-   <button className="navbar-button" onClick={signup}>sign up</button>
-   </div>
-   
-    
-  </nav>
-  
+
+    </div>  
   ) : null;
 };
 
