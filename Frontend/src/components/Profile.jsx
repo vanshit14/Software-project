@@ -27,7 +27,7 @@ const Profile = () => {
     <div className='profile-div'>
       <div>
         <label>Name:</label>
-        <input
+        <input className='profile-input'
           type="text"
           value={profileData.username}
           onChange={(e) => handleChange('name', e.target.value)}
@@ -35,7 +35,7 @@ const Profile = () => {
       </div>
       <div>
         <label>Username:</label>
-        <input
+        <input className='profile-input'
           type="text"
           value={profileData.username}
           onChange={(e) => handleChange('username', e.target.value)}
@@ -43,7 +43,7 @@ const Profile = () => {
       </div>
       <div>
         <label>Gender:</label>
-        <select
+        <select className='profile-select'
           value={profileData.gender}
           onChange={(e) => handleChange('gender', e.target.value)}
         >
@@ -54,7 +54,7 @@ const Profile = () => {
       </div>
       <div>
         <label>Date of Birth:</label>
-        <input
+        <input className='profile-input'
           type="date"
           value={profileData.dob}
           onChange={(e) => handleChange('dob', e.target.value)}
@@ -62,7 +62,7 @@ const Profile = () => {
       </div>
       <div>
         <label>Phone Number:</label>
-        <input
+        <input className='profile-input'
           type="tel"
           value={profileData.phone}
           onChange={(e) => handleChange('phone', e.target.value)}
@@ -70,14 +70,14 @@ const Profile = () => {
       </div>
       <div>
         <label>Email:</label>
-        <input
+        <input className='profile-input'
           type="email"
           value={profileData.email}
           onChange={(e) => handleChange('email', e.target.value)}
         />
       </div>
       <div>
-        <button onClick={handleSave}>Save</button>
+        <button className="profile-button"onClick={handleSave}>Save</button>
       </div>
     </div>) : (<p>No user data available</p>)
 

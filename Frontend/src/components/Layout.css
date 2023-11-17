@@ -1,0 +1,58 @@
+/* Layout.css */
+
+.layout {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+/* CenteredButtons.css */
+
+.centered-container-provide
+{
+  flex: 1;
+  display: flex;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiTp7lwpBfX4hK6xSsyAhdnKbszEQjYZ5YfA&usqp=CAU");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  border-right: solid black;
+  border-left: solid black;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px); /* Adjust as needed */
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+.centered-container-book {
+  flex: 1;
+  display: flex;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiTp7lwpBfX4hK6xSsyAhdnKbszEQjYZ5YfA&usqp=CAU");
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-right: solid black;
+  border-left: solid black;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px); /* Adjust as needed */
+}
+
+.centered-button-provide,
+.centered-button-book {
+  padding: 8px 16px; /* Adjust the padding for smaller buttons */
+  margin: 5px;
+  margin-top: 550px;
+  margin-bottom: 50px;
+  width: 80%;
+  background-color:  #FFCC00;
+  height: 16px; /* Adjust the height for smaller buttons */
+  font-size: 14px; /* Adjust the font size for smaller buttons */
+  cursor: pointer;
+}

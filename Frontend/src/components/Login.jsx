@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {useUser} from './UserContext';
+
 import './Login.css';
 
 const Login = () => {
@@ -45,6 +46,11 @@ const Login = () => {
         handleLogin();
     }
 };
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter') {
+    handleLogin();
+  }
+};
 
 useEffect(() => {
     document.addEventListener('keydown', handleloginKeyPress);
@@ -53,32 +59,26 @@ useEffect(() => {
     };
 }, []);
   return (
-   
-    <div className='final'>
-      <h2>Login</h2>
-      <label>Username: </label>
-      <input type="text" value={usernamein} onChange={(e) => {setUsernamein(e.target.value)}} />
+    <form onKeyDown={handleKeyPress}>
 
-      <label>Password: </label>
-      <input type="password" value={passwordin} onChange={(e) => {setPasswordin(e.target.value)}} />
-
-      {error && <div className="error-message" style={{color: 'red'}}>{error}</div>}
-
-      <button onClick={handleLogin} disabled={isLoading}>
-        {isLoading ? 'Logging in...' : 'Login'}
-      </button>
-
-      <p className='account'>
-        Don't have an account?{' '}
-        <div className='regis-button'>
-        <Link to="/RegistrationForm">
-          <button>Register</button>
-        </Link>
+      <div className='login'>
+        <div className='login-box'>
+<div className='login-text'>Login</div>
+<div className='text-holder'>
+<input type="text" className='login-username'  placeholder="Username" value={usernamein} onChange={(e) => {setUsernamein(e.target.value)}}/>
+<input type="password" placeholder='Password' className='login-password' value={passwordin} onChange={(e) => {setPasswordin(e.target.value)}}/>
+</div>
+<div className='login-signup'>
+<button className='login-button' onClick={handleLogin} disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}</button>
+<Link to="/RegistrationForm" className='account-text'>Create account</Link>
+</div>
         </div>
-        
-      </p>
-    </div>
+        <div className='curve-box'>
+        </div>
+
+      </div>
     
+</form>
   );
 };
 
