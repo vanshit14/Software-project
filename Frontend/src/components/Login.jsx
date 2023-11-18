@@ -11,9 +11,9 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { setUserInfo } = useUser();
   const navigate = useNavigate();
-  
   const handleLogin = async () => {
     setIsLoading(true);
+
   
     try {
       const response = await fetch(`http://localhost:3300/userdetail/${usernamein}`);
@@ -39,28 +39,13 @@ const Login = () => {
     }
   };
 
-  const handleloginKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      console.log("pass",passwordin);
-      console.log(usernamein);
-        handleLogin();
-    }
-};
-const handleKeyPress = (event) => {
-  if (event.key === 'Enter') {
-    handleLogin();
+  const handleRegister = () =>{
+    navigate('/RegistrationForm');
   }
-};
 
-useEffect(() => {
-    document.addEventListener('keydown', handleloginKeyPress);
-    return () => {
-        document.removeEventListener('keydown', handleloginKeyPress);
-    };
-}, []);
+
+
   return (
-    <form onKeyDown={handleKeyPress}>
-
       <div className='login'>
         <div className='login-box'>
 <div className='login-text'>Login</div>
@@ -70,7 +55,7 @@ useEffect(() => {
 </div>
 <div className='login-signup'>
 <button className='login-button' onClick={handleLogin} disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}</button>
-<Link to="/RegistrationForm" className='account-text'>Create account</Link>
+<span onClick={handleRegister} className='account-text'>Create account</span>
 </div>
         </div>
         <div className='curve-box'>
@@ -78,7 +63,7 @@ useEffect(() => {
 
       </div>
     
-</form>
+
   );
 };
 

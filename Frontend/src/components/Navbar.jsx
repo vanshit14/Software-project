@@ -15,10 +15,8 @@ const Navbar = () => {
   const shouldRenderNavbar = !isLoginRoute && !isRegisterRoute;
 
 
-  const signup = ()=>{
-    navigate('/RegistrationForm');
-  }
-  const login = () =>{
+
+  const logout = () =>{
     navigate('/');
   }
   
@@ -33,8 +31,8 @@ const Navbar = () => {
       </div>
 
       <div className='navbar-button'>
-        <button className='signin' onClick={login}>Login</button>
-        <button className='signup'onClick={signup}>Sign up</button>
+        
+        <button className='signup'onClick={logout}>Logout</button>
       </div>
 
     </div>  

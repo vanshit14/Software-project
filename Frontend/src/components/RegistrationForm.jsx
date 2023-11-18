@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
-import {Routes, Route, useNavigate, Navigate, useNavigation} from 'react-router-dom';
+import {Link,Routes, Route, useNavigate, Navigate, useNavigation} from 'react-router-dom';
 import { UserProvider,useUser } from './UserContext';
 import './RegistrationForm.css';
 
@@ -30,16 +30,8 @@ const RegistrationForm = () => {
 
   const navigate = useNavigate();
 
-  // const navigation = () =>{
-  //   navigate('/Layout');
-  // }
-
-  const handleLogin = () =>{
-    navigate('/');
-  }
-
-  const handleRegistration = () => {
-    // Validate individual fields
+  const handleRegistration = async () => {
+ 
     const newErrors = {
       last: last? '' : 'Last name is required.',
       first: first ? '' : 'First name is required.',
@@ -82,88 +74,93 @@ const RegistrationForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
     };
-    fetch("http://localhost:3300/newuser", requestOptions)
-  .then((res) => {
-    console.log("resse",res);
-    console.log("stat",res.status);
-    if(!res.ok){
-    const error = {
-      username : "Username is taken",
+    try{
+    const res = await fetch("http://localhost:3300/newuser", requestOptions)
+    if (!res.ok) {
+
+      throw new Error(`HTTP error! Status: ${res.status}`);
     }
-    setErrors(error);
-      return;
+    else{
+      navigate('/Layout');
     }
 
-    navigate('/');
-    // Handle the response here if needed
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+    
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+  }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log("Enter")
+      handleRegistration();
+    }
   };
 
   return (
-    <div className="container">
-      <label>Last Name: </label>
-      <input
-        type="text"
-        value={last}
-        onChange={(e) => setLast(e.target.value)}
-        required
-      />
-      {errors.last && <div className="error">{errors.last}</div>}
 
-      <label>First Name: </label>
-      <input
-        type="text"
-        value={first}
-        onChange={(e) => setFirst(e.target.value)}
-        required
-      />
-      {errors.first && <div className="error">{errors.first}</div>}
-
-      <label>Username: </label>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      {errors.username && <div className="error">{errors.username}</div>}
-
-      <label>Date of Birth: </label>
-      <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} required />
-      {errors.dob && <div className="error">{errors.dob}</div>}
-
-      <label>Gender: </label>
-      <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-        <option value="">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-      {errors.gender && <div className="error">{errors.gender}</div>}
-
-      <label>Password: </label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      {errors.password && <div className="error">{errors.password}</div>}
-
-      <label>Phone No: </label>
-      <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-      {errors.phone && <div className="error">{errors.phone}</div>}
-
-      <label>Email: </label>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      {errors.email && <div className="error">{errors.email}</div>}
-
-      <button className="register" onClick={()=>{handleRegistration();}}>Register</button>
-      <button className="register" onClick={()=>{handleLogin();}}>Login</button>
+    <div className='registration'>
+<div className='registration-box'>
+<div className='registration-text'>Registration</div>
+<div className='registration-input'>
+  <div className='input-1'>
+    <div>
+    <input type='text'  value={first}  onChange={(e) => setFirst (e.target.value)}placeholder='First Name' className='firstname'></input>
+    {errors.first && <div className="error">{errors.first}</div>}
     </div>
+    
+    <div>
+    <input type='text' value={last}  onChange={(e) => setLast(e.target.value)} placeholder='Last Name' className='firstname' required></input>
+    {errors.last && <div className="error">{errors.last}</div>}
+    </div>
+  </div>
+  <div className='input-1'>
+    <div>
+    <input  type='text'  value={username}  onChange={(e) => setUsername(e.target.value)} placeholder='Userame' className='firstname' required></input>
+    {errors.username && <div className="error">{errors.username}</div>}
+    </div>
+    <div>
+    <input type='password' value={password}  onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='firstname' required></input>
+    {errors.password && <div className="error">{errors.password}</div>}
+    </div>
+  </div>
+  <div className='input-1'>
+    <div>
+  <input type="date" className='firstname' value={dob} onChange={(e) => setDob(e.target.value)} required />
+  {errors.dob && <div className="error">{errors.dob}</div>}
+    </div>
+
+    <div>
+  <select value={gender}  className="firstname" onChange={(e) => setGender(e.target.value)} required>
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+  </select>
+  {errors.gender && <div className="error">{errors.gender}</div>}
+    </div>
+  </div>
+  <div className='input-1'>
+    <div>
+    <input type='text' placeholder='Phone No.' className='firstname' value={phone}  onChange={(e) => setPhone(e.target.value)} required></input>
+    {errors.phone && <div className="error">{errors.phone}</div>}
+    </div>
+    <div>
+    <input type='text' placeholder='Email' className='firstname' value={email}  onChange={(e) => setEmail(e.target.value)} required></input>
+    {errors.email && <div className="error">{errors.email}</div>}
+    </div>
+  </div>
+</div>
+
+<div className='registraion-final'> 
+<button className='registration-button' onClick={handleRegistration}>Register</button>
+<Link to='/' className='registrationtologin' >Login</Link>
+</div>
+
+</div>
+    </div>
+  
   );
 };
 

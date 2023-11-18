@@ -21,71 +21,69 @@ const Profile = () => {
   };
 
   return (
-    <div >
+  
+    <div>
 
-    </div>
-//     <div>
+    { profileData ?(
+    <div className='profile-div'>
+      <div>
+        <label>Name:</label>
+        <input className='profile-input'
+          type="text"
+          value={profileData.username}
+          onChange={(e) => handleChange('name', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Username:</label>
+        <input className='profile-input'
+          type="text"
+          value={profileData.username}
+          onChange={(e) => handleChange('username', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Gender:</label>
+        <select className='profile-select'
+          value={profileData.gender}
+          onChange={(e) => handleChange('gender', e.target.value)}
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label>Date of Birth:</label>
+        <input className='profile-input'
+          type="date"
+          value={profileData.dob}
+          onChange={(e) => handleChange('dob', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Phone Number:</label>
+        <input className='profile-input'
+          type="tel"
+          value={profileData.phone}
+          onChange={(e) => handleChange('phone', e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input className='profile-input'
+          type="email"
+          value={profileData.email}
+          onChange={(e) => handleChange('email', e.target.value)}
+        />
+      </div>
+      <div>
+        <button className="profile-button"onClick={handleSave}>Save</button>
+      </div>
+    </div>) : (<p>No user data available</p>)
 
-//     { profileData ?(
-//     <div className='profile-div'>
-//       <div>
-//         <label>Name:</label>
-//         <input className='profile-input'
-//           type="text"
-//           value={profileData.username}
-//           onChange={(e) => handleChange('name', e.target.value)}
-//         />
-//       </div>
-//       <div>
-//         <label>Username:</label>
-//         <input className='profile-input'
-//           type="text"
-//           value={profileData.username}
-//           onChange={(e) => handleChange('username', e.target.value)}
-//         />
-//       </div>
-//       <div>
-//         <label>Gender:</label>
-//         <select className='profile-select'
-//           value={profileData.gender}
-//           onChange={(e) => handleChange('gender', e.target.value)}
-//         >
-//           <option value="Male">Male</option>
-//           <option value="Female">Female</option>
-//           <option value="Other">Other</option>
-//         </select>
-//       </div>
-//       <div>
-//         <label>Date of Birth:</label>
-//         <input className='profile-input'
-//           type="date"
-//           value={profileData.dob}
-//           onChange={(e) => handleChange('dob', e.target.value)}
-//         />
-//       </div>
-//       <div>
-//         <label>Phone Number:</label>
-//         <input className='profile-input'
-//           type="tel"
-//           value={profileData.phone}
-//           onChange={(e) => handleChange('phone', e.target.value)}
-//         />
-//       </div>
-//       <div>
-//         <label>Email:</label>
-//         <input className='profile-input'
-//           type="email"
-//           value={profileData.email}
-//           onChange={(e) => handleChange('email', e.target.value)}
-//         />
-//       </div>
-//       <div>
-//         <button className="profile-button"onClick={handleSave}>Save</button>
-//       </div>
-//     </div>) : (<p>No user data available</p>)
-
-// }
-//      </div>
+}
+     </div>
   );
 };
 
