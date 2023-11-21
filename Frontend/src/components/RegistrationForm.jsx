@@ -81,7 +81,7 @@ const RegistrationForm = () => {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
     else{
-      navigate('/Layout');
+      navigate('/');
     }
 
     
@@ -99,7 +99,6 @@ const RegistrationForm = () => {
   };
 
   return (
-
     <div className='registration'>
 <div className='registration-box'>
 <div className='registration-text'>Registration</div>

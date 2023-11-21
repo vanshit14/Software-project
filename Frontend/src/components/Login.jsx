@@ -46,6 +46,7 @@ const Login = () => {
 
 
   return (
+  
       <div className='login'>
         <div className='login-box'>
 <div className='login-text'>Login</div>
@@ -62,8 +63,6 @@ const Login = () => {
         </div>
 
       </div>
-    
-
   );
 };
 
