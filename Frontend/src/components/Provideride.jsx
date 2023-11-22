@@ -83,13 +83,11 @@ const Provideride = () => {
         }
     };
 
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyPress);
-        return () => {
-            document.removeEventListener('keydown', handleKeyPress);
-        };
-    }, []);
+  
     return (
+        <form onKeyDown={handleKeyPress}>
+
+       
         <div className="licence-container">
             <div className="detail-licence">
                 <label>Driving licence: </label>
@@ -157,6 +155,7 @@ const Provideride = () => {
 
             
         </div>
+        </form>
     );
 }
 

@@ -17,20 +17,28 @@ const Layout = () => {
     console.log("context data:",userInfo);
   },[userInfo])
   return (
-    <>
-    <div className="layout">
-    <div className="centered-container-provide">
-      <button  onClick={navigatetoprovide} className="centered-button-provide">Provide a ride</button>
 
-    
+    <div className="layout">
+
+      <div className="book-provide">
+
+        <div className="ride">
+          <div className="ride-content">
+
+          </div>
+          <button onClick={navigatetoprovide}  className="ride-button">Provide Ride</button>
+        </div>
+
+        <div className="ride">
+          <div className="ride-content">
+
+          </div>
+          <button onClick={navigatetobook} className="ride-button">Book Ride</button>
+        </div>
+        
 
       </div>
-      <div className="centered-container-book">
-      <button onClick={navigatetobook} className="centered-button-book">Book a ride</button>
-    </div> 
     </div>
-     </>
-
   )
 };
 

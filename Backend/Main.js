@@ -37,6 +37,7 @@ const userdetail = mongoose.model('users', testSchema);
 app.get('/userdetail/:username', (req, ress) => {
 
   const user = req.params.username;
+  console.log(req.params.username);
 userdetail.find({username: user})
   .then(res => {
     ress.send(res);

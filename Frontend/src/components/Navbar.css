@@ -1,0 +1,96 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  padding: 13px 29px;
+  align-items: center;
+  gap: 375px;
+  background: #E2EFF8;
+}
+
+
+.symbol{
+display: inline-flex;
+width: 50px;
+height: 40px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-shrink: 0;
+background: #4069D2;
+}
+
+.navbar-content{
+  display: inline-flex;
+justify-content: center;
+align-items: center;
+gap: 34px;
+
+
+}
+
+.home{
+  width: 80px;
+  height: 24px;
+  color: #000;
+font-family: Inter;
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-decoration: none;
+}
+
+.about-us{
+width: 112px;
+height: 24px;
+color: #000;
+font-family: Inter;
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-decoration: none;
+}
+
+.profile{
+  width: 80px;
+  height: 24px;
+  color: #000;
+  text-decoration: none;
+font-family: Inter;
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.navbar-button{
+  display: flex;
+width: 193px;
+height: 34px;
+padding-left: 100px;
+justify-content: center;
+align-items: flex-start;
+gap: 27px;
+}
+.signup{
+  display: flex;
+  width: 50px;
+  height: 15px;
+  padding: 10px 20px 9px 20px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 15px;
+background: #35B5DE;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+color: #000;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+}

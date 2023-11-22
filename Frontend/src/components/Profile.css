@@ -14,8 +14,8 @@
     margin-bottom: 8px;
   }
   
-  input,
-  select {
+  .profile-input,
+  .profile-select {
     width: 100%;
     padding: 8px;
     margin-bottom: 12px;
@@ -24,7 +24,7 @@
     box-sizing: border-box;
   }
   
-  button {
+  .profile-button {
     
     color: white;
     padding: 10px 15px;
@@ -33,7 +33,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .prolife-button:hover {
     background-color: #45a049;
   }
   
